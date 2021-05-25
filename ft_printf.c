@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:54:33 by pbielik           #+#    #+#             */
-/*   Updated: 2021/05/25 17:49:46 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/05/25 20:13:42 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_printf.h"
 
 #define CONVERSIONS "cspdiuxX%"
 
@@ -38,11 +39,12 @@ void 	printPrecision(t_flags *flags, int len, char *str);
 char	*ft_itoa(int n);
 void 	printInt(t_flags *flags, int num);
 
-int main()
+/* int main()
 {
-	ft_printf("%-010.2d", -14568);
-	ft_printf("%-30.8d", 14568.56);
-}
+	printf("----------Character %%c----------\t\n\n");
+	printf("printf:  %c \n\n", 'a');
+	ft_printf("ft_printf:  %c \n", 'a');
+} */
 
 int	ft_printf(char *format, ...)
 {
@@ -67,12 +69,12 @@ int	ft_printf(char *format, ...)
 		}
 		i++;
 	}
- 	printf("\n\nWidth: %d\n", flags.width);
-	printf("Precision: %d\n", flags.precision);
-	printf("Types: %c\n", flags.types);
-	printf("Left Pads: %d\n", flags.leftPads);
-	printf("Left Justify: %d\n", flags.leftJustify);
-	printf("Return: %d\n\n", flags.count);
+ 	printf("\n\nWidth: %-8d\t", flags.width);
+	printf("Precision: %-8d\t", flags.precision);
+	printf("Types: %-8c\t", flags.types);
+	printf("Left Pads: %-8d\t", flags.leftPads);
+	printf("Left Justify: %-8d\t", flags.leftJustify);
+	printf("Return: %-8d\n", flags.count);
 	return (flags.count);
 }
 
