@@ -4,7 +4,8 @@ FLAGS += -g -Wall -Wextra -Werror
 
 SRC =	ft_printf.c \
 		libft_utils.c \
-		outChar.c
+		outChar.c \
+		outStr.c
 
 FLAG_C = main_c.c
 FLAG_S = main_s.c

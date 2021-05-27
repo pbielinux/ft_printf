@@ -2,6 +2,6 @@
 
 int main()
 {
-	printf("\nprintf:\t\t %c \n", 67);
-	ft_printf("ft_printf:\t %c \n", 67);
+	printf("\nprintf:\t\t %s || %s \n", "Hello", "World!");
+	ft_printf("ft_printf:\t %s || %s \n", "Hello", "World!");
 }

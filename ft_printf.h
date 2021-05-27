@@ -37,6 +37,7 @@ char	*ft_itoa(int n);
 
 t_print	*initTab(t_print *tab);
 void	updateTab(t_print *tab, int len);
+int		updateTabString(t_print *tab, char *str, int len);
 int		parseFormat(t_print *tab, const char *format, int );
 
 int		parseVar(t_print *tab, const char *format, int pos);
@@ -47,6 +48,7 @@ int		parsePrecision(t_print *tab, const char *format, int pos);
 int		parseWidth(t_print *tab, const char *format, int pos);
 
 void	outChar(t_print *tab);
+void	outStr(t_print *tab);
 void	printRightAlpha(t_print *tab, int len);
 void	printLeftAlpha(t_print *tab, int len);
 

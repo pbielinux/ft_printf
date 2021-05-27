@@ -20,8 +20,8 @@ void	printRightAlpha(t_print *tab, int len)
 		tab->count += write(1, "0", 1);
 		tab->width--;
 	}
-	if (!tab->leftPads && tab->percent && tab->percent < len)
-		while (tab->width > tab->percent)
+	if (!tab->leftPads && tab->precision && tab->precision < len)
+		while (tab->width > tab->precision)
 		{
 			tab->count += write(1, ".", 1);
 			tab->width--;
@@ -55,15 +55,15 @@ void	updateTab(t_print *tab, int len)
 		if (tab->width)
 			tab->width -= 1;
 	}
-	if (tab->percent > 0)
+	if (tab->precision > 0)
 		tab->leftPads = 0;
-	if (tab->width && tab->width >= tab->percent)
+	if (tab->width && tab->width >= tab->precision)
 	{
-		if (tab->percent > len)
-			tab->percent -= len;
+		if (tab->precision > len)
+			tab->precision -= len;
 		else
-			tab->percent = 0;
+			tab->precision = 0;
 		if (!tab->isZero)
-			tab->width = tab->width - tab->percent - len;
+			tab->width = tab->width - tab->precision - len;
 	}
 }

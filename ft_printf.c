@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:54:33 by pbielik           #+#    #+#             */
-/*   Updated: 2021/05/27 17:26:20 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/05/27 18:17:37 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int		parseVar(t_print *tab, const char *format, int pos)
 {
 	if (format[pos] == 'c')
 		outChar(tab);
-/* 	else if (format[pos] == 's')
-		outString(tab);
-	else if (format[pos] == 'd' || format[pos] == 'i')
+	else if (format[pos] == 's')
+		outStr(tab);
+/*	else if (format[pos] == 'd' || format[pos] == 'i')
 		outInt(tab);
 	else if (format[pos] == 'u')
 		outUnsignedInt(tab);
