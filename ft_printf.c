@@ -6,7 +6,7 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:54:33 by pbielik           #+#    #+#             */
-/*   Updated: 2021/05/27 15:23:35 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/05/27 15:40:19 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	ft_printf(char *format, ...)
 		}
 		i++;
 	}
-/* 	printf("\n\nWidth: %-8d\t", flags.width);
+ 	printf("\n\nWidth: %-8d\t", flags.width);
 	printf("Precision: %-8d\t", flags.precision);
 	printf("Types: %-8c\t", flags.types);
 	printf("Left Pads: %-8d\t", flags.leftPads);
 	printf("Left Justify: %-8d\t", flags.leftJustify);
-	printf("Return: %-8d\n", flags.count); */
+	printf("Return: %-8d\n", flags.count);
 
 	va_end(args);
 	return (flags.count);
