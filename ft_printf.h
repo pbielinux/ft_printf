@@ -15,24 +15,39 @@
 # define CONVERSIONS "cspdiuxX%"
 
 typedef struct s_flags {
-	int leftJustify;
-	int leftPads;
-	int precision;
-	int width;
-	int count;
-	int types;
-} t_flags;
+	va_list	args;			// arg to print
+	int		width;			//   -> Width
+	int		precision;		// . -> precision
+	int		leftJustify;	// - -> left justify
+	int		leftPads;		// 0 -> zero padding
+	int		sign;			//   -> Positive or Negative number
+	int		isZero;		//   -> Is number zero
+	int		percent;		//   -> %
+	int 	count;			//   -> Return value
+	int		type;
+} t_print;
 
-int		ft_printf(char *format, ...);
-void	ft_putchar(char c, t_flags *flags);
-int		parseFlags(t_flags *flags, char *format, va_list args, int i);
+int		ft_printf(const char *format, ...);
+void	ft_putchar(char c);
 int		ft_isdigit(int c);
+int		ft_isalpha(int c);
 char	*ft_strchr(const char *str, int c);
-void	printType(t_flags *flags, va_list args);
-void	printWidth(t_flags *flags, int spaces, int width, int zero);
 size_t	ft_strlen(const char *str);
-void 	printPrecision(t_flags *flags, int len, char *str);
 char	*ft_itoa(int n);
-void 	printInt(t_flags *flags, int num);
+
+t_print	*initTab(t_print *tab);
+void	updateTab(t_print *tab, int len);
+int		parseFormat(t_print *tab, const char *format, int );
+
+int		parseVar(t_print *tab, const char *format, int pos);
+int		parseZero(t_print *tab, const char *format, int pos);
+int		parseStar(t_print *tab, const char *format, int pos);
+int		parseDash(t_print *tab, const char *format, int pos);
+int		parsePrecision(t_print *tab, const char *format, int pos);
+int		parseWidth(t_print *tab, const char *format, int pos);
+
+void	outChar(t_print *tab);
+void	printRightAlpha(t_print *tab, int len);
+void	printLeftAlpha(t_print *tab, int len);
 
 #endif

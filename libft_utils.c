@@ -1,14 +1,21 @@
 #include "ft_printf.h"
 
-void	ft_putchar(char c, t_flags *flags)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
-	flags->count += 1;
 }
 
 int	ft_isdigit(int c)
 {
 	if ((c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
 		return (1);
 	return (0);
 }
