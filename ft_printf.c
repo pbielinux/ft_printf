@@ -6,45 +6,11 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:54:33 by pbielik           #+#    #+#             */
-/*   Updated: 2021/05/25 20:13:42 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/05/27 15:23:35 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "ft_printf.h"
-
-#define CONVERSIONS "cspdiuxX%"
-
-typedef struct s_flags {
-	int leftJustify;
-	int leftPads;
-	int precision;
-	int width;
-	int count;
-	int types;
-} t_flags;
-
-int		ft_printf(char *format, ...);
-void	ft_putchar(char c, t_flags *flags);
-int		parseFlags(t_flags *flags, char *format, va_list args, int i);
-int		ft_isdigit(int c);
-char	*ft_strchr(const char *str, int c);
-void	printType(t_flags *flags, va_list args);
-void	printWidth(t_flags *flags, int spaces, int width, int zero);
-size_t	ft_strlen(const char *str);
-void 	printPrecision(t_flags *flags, int len, char *str);
-char	*ft_itoa(int n);
-void 	printInt(t_flags *flags, int num);
-
-/* int main()
-{
-	printf("----------Character %%c----------\t\n\n");
-	printf("printf:  %c \n\n", 'a');
-	ft_printf("ft_printf:  %c \n", 'a');
-} */
 
 int	ft_printf(char *format, ...)
 {
@@ -69,12 +35,14 @@ int	ft_printf(char *format, ...)
 		}
 		i++;
 	}
- 	printf("\n\nWidth: %-8d\t", flags.width);
+/* 	printf("\n\nWidth: %-8d\t", flags.width);
 	printf("Precision: %-8d\t", flags.precision);
 	printf("Types: %-8c\t", flags.types);
 	printf("Left Pads: %-8d\t", flags.leftPads);
 	printf("Left Justify: %-8d\t", flags.leftJustify);
-	printf("Return: %-8d\n", flags.count);
+	printf("Return: %-8d\n", flags.count); */
+
+	va_end(args);
 	return (flags.count);
 }
 
@@ -138,8 +106,8 @@ void	printType(t_flags *flags, va_list args)
 		char *str = va_arg(args, char *);
 		if (str == NULL)
 			str = "(null)";
-		if (flags->precision > ft_strlen(str) || flags->precision <= -1)
-			flags->precision = ft_strlen(str);
+		if (flags->precision > (int)ft_strlen(str) || flags->precision <= -1)
+			flags->precision = (int)ft_strlen(str);
 
 		if (!flags->leftJustify)
 			printWidth(flags, flags->precision, flags->width, 0);
@@ -167,32 +135,32 @@ void printInt(t_flags *flags, int num)
 
 	if (flags->leftPads && flags->precision == -1)
 	{
-		printWidth(flags, ft_strlen(str), flags->width - neg, 1);
+		printWidth(flags, (int)ft_strlen(str), flags->width - neg, 1);
 		if (neg)
 			ft_putchar('-', flags);
-		printPrecision(flags, ft_strlen(str), str);
+		printPrecision(flags, (int)ft_strlen(str), str);
 	}
 	else if (!flags->leftJustify)
 	{
-		if (flags->precision > ft_strlen(str))
+		if (flags->precision > (int)ft_strlen(str))
 			printWidth(flags, flags->precision, flags->width - neg, 0);
 		else
-			printWidth(flags, ft_strlen(str), flags->width - neg, 0);
+			printWidth(flags, (int)ft_strlen(str), flags->width - neg, 0);
 		if (neg)
 			ft_putchar('-', flags);
-		printWidth(flags, ft_strlen(str), flags->precision, 1);
+		printWidth(flags, (int)ft_strlen(str), flags->precision, 1);
 		printPrecision(flags, ft_strlen(str), str);
 	}
 	else if (flags->leftJustify)
 	{
 		if (neg)
 			ft_putchar('-', flags);
-		printWidth(flags, ft_strlen(str), flags->precision, 1);
+		printWidth(flags, (int)ft_strlen(str), flags->precision, 1);
 		printPrecision(flags, ft_strlen(str), str);
-		if (flags->precision > ft_strlen(str))
+		if (flags->precision > (int)ft_strlen(str))
 			printWidth(flags, flags->precision, flags->width - neg, 0);
 		else
-			printWidth(flags, ft_strlen(str), flags->width - neg, 0);
+			printWidth(flags, (int)ft_strlen(str), flags->width - neg, 0);
 	}
 
 }
@@ -220,76 +188,4 @@ void printPrecision(t_flags *flags, int len, char *str)
 		ft_putchar(str[i], flags);
 		i++;
 	}
-}
-
-void	ft_putchar(char c, t_flags *flags)
-{
-	write(1, &c, 1);
-	flags->count += 1;
-}
-
-int	ft_isdigit(int c)
-{
-	if ((c >= '0' && c <= '9'))
-		return (1);
-	return (0);
-}
-
-char	*ft_strchr(const char *str, int c)
-{
-	while (*str)
-	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
-	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int		ft_counter(int n)
-{
-	size_t	counter;
-
-	counter = 0;
-	if (n == 0)
-		return (1);
-	while (n > 0)
-	{
-		n /= 10;
-		counter++;
-	}
-	return (counter);
-}
-
-char	*ft_itoa(int n)
-{
-	size_t	len;
-	char	*tab;
-
-	if (n < 0)
-		n *= -1;
-	if (n == 0)
-		return ("0");
-	len = ft_counter(n);
-	if (!(tab = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	tab[len] = '\0';
-	while (len > 0)
-	{
-		tab[--len] = n % 10 + 48;
-		n /= 10;
-	}
-	return (tab);
 }
