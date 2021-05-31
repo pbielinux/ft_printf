@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	ft_putchar(char c)
 {
@@ -18,6 +18,24 @@ int	ft_isalpha(int c)
 		|| (c >= 'A' && c <= 'Z'))
 		return (1);
 	return (0);
+}
+
+int	ft_numlen(long n)
+{
+	int count;
+
+	count = 0;
+	if (n <= 0)
+	{
+		count += 1;
+		n *= -1;
+	}
+	while(n > 0)
+	{
+		count++;
+		n /= 10;
+	}
+	return (count);
 }
 
 char	*ft_strchr(const char *str, int c)
@@ -77,4 +95,44 @@ char	*ft_itoa(int n)
 		n /= 10;
 	}
 	return (tab);
+}
+
+int		ft_atoi(const char *s)
+{
+	int		sign;
+	int		r;
+	int		flag;
+
+	r = 0;
+	sign = 1;
+	while (ft_isspace(*s))
+		s++;
+	flag = 0;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -1;
+		flag++;
+		s++;
+	}
+	if (flag > 1)
+		return (0);
+	while (*s >= '0' && *s <= '9')
+	{
+		r = r * 10 + *s - '0';
+		s++;
+	}
+	return (r * sign);
+}
+
+int	ft_isspace(int c)
+{
+	if (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ')
+		return (1);
+	return (0);
 }

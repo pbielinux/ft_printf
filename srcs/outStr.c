@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 void	outStr(t_print *tab)
 {
@@ -11,6 +11,8 @@ void	outStr(t_print *tab)
 	str = va_arg(tab->args, char *);
 	if(!str)
 		str = "(null)";
+	if (str && tab->point == 1 && tab->precision == 0)
+		return (writePoint(tab));
 	len = updateTabString(tab, str, len);
 	if(!tab->leftJustify && tab->width > len)
 		printRightAlpha(tab, len);
@@ -31,11 +33,12 @@ void	outStr(t_print *tab)
 		printLeftAlpha(tab, len);
 }
 
-int		updateTabString(t_print *tab, char *str, int len)
+void	writePoint(t_print *tab)
 {
-	if(str)
-		len = ft_strlen(str);
-	if(tab->percent > 0 && len > tab->percent)
-		len = tab->percent;
-	return (len);
+	updateTabString(tab, NULL, 0);
+	while (tab->width)
+	{
+		tab->count += write(1, " ", 1);
+		tab->width--;
+	}
 }
