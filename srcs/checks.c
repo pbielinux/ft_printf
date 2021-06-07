@@ -18,7 +18,7 @@ void	checkWidth(t_print *tab)
 {
 	if (tab->width < 0)
 	{
-		tab->width += -1;
+		tab->width *= -1;
 		tab->leftJustify = 1;
 		tab->leftPads = 0;
 	}

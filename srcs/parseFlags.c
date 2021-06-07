@@ -81,10 +81,10 @@ int	parseWidth(t_print *tab, const char *format, int pos)
 int	parseStar(t_print *tab, const char *format, int pos)
 {
 	pos++;
-	if (!tab->point)
+	if (tab->point == 0)
 	{
 		tab->width = va_arg(tab->args, int);
-		checkWidth(tab);
+		checkWidth(tab); // If the arg is Neg, have to turn on the LeftJustify and make the wdt positive.
 	}
 	else
 	{

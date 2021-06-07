@@ -23,14 +23,26 @@ int		parseFormat(t_print *tab, const char *format, int pos)
 int		parseVar(t_print *tab, const char *format, int pos)
 {
 	if (format[pos] == 'c')
+	{
+		ft_printf("%s", BGYLW);
 		outChar(tab);
+		ft_printf("%s", RESET);
+	}
 	else if (format[pos] == 's')
 		outStr(tab);
-/* 	else if (format[pos] == 'd' || format[pos] == 'i')
+ 	else if (format[pos] == 'd' || format[pos] == 'i')
+	{
+		ft_printf("%s", BGMGT);
 		outInt(tab);
+		ft_printf("%s", RESET);
+	}
 	else if (format[pos] == 'u')
+	{
+		ft_printf("%s", BGGRN);
 		outUnsignedInt(tab);
-	else if (format[pos] == 'p')
+		ft_printf("%s", RESET);
+	}
+/*	else if (format[pos] == 'p')
 		outPointer(tab);
 	else if (format[pos] == 'x' || format[pos] == 'X')
 		outHexaInt(tab, format[pos] - 23);

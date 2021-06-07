@@ -12,8 +12,10 @@ SRC =	$(SRCS_PATH)ft_printf.c \
 		$(SRCS_PATH)parseFlags.c \
 		$(SRCS_PATH)parseTab.c \
 		$(SRCS_PATH)checks.c \
+		$(SRCS_PATH)alignment.c \
 		$(SRCS_PATH)outChar.c \
-		$(SRCS_PATH)outStr.c
+		$(SRCS_PATH)outStr.c \
+		$(SRCS_PATH)outInt.c
 
 SRCS_OBJS	= ${SRC:.c=.o}
 

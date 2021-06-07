@@ -8,6 +8,7 @@
 
 #define BGGRN  "\x1B[48;5;48;38;5;0m"
 #define BGYLW  "\x1B[48;5;11;38;5;0m"
+#define BGMGT  "\x1B[48;5;13;38;5;0m"
 #define TXBLU  "\x1B[38;5;51m"
 #define TXRED  "\x1B[38;5;196m"
 #define RESET  "\x1B[0m"
@@ -34,10 +35,13 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *str);
-char	*ft_itoa(int n);
 int		ft_numlen(long n);
 int		ft_atoi(const char *s);
+char	*ft_itoa(int n);
+char	*ft_uitoa(unsigned int n);
 int		ft_isspace(int c);
+char	*ft_strdup(const char *str);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 t_print	*initTab(t_print *tab);
 t_print *resetTab(t_print *tab);
@@ -58,8 +62,15 @@ void	checkWidth(t_print *tab);
 
 void	outChar(t_print *tab);
 void	outStr(t_print *tab);
-void	writePoint(t_print *tab);
+void	outInt(t_print *tab);
+void	outUnsignedInt(t_print *tab);
+void	printBlanks(t_print *tab);
+void	printZero(t_print *tab);
 void	printRightAlpha(t_print *tab, int len);
 void	printLeftAlpha(t_print *tab, int len);
+void	printLeftNumber(t_print *tab);
+void	printRightNumber(t_print *tab);
+void	printRightZero(t_print *tab);
+void	printZeroPoint(t_print *tab);
 
 #endif

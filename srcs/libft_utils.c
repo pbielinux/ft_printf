@@ -78,23 +78,45 @@ int		ft_counter(int n)
 
 char	*ft_itoa(int n)
 {
+	int		neg;
 	size_t	len;
 	char	*tab;
 
-	if (n < 0)
-		n *= -1;
-	if (n == 0)
-		return ("0");
+	if (n == -2147483648)
+		return (ft_strdup("2147483648"));
+	neg = (n < 0) ? 1 : 0;
+	n = (neg == 1) ? n * -1 : n;
 	len = ft_counter(n);
-	if (!(tab = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(tab = (char *)malloc(sizeof(char) * len + neg + 1)))
 		return (NULL);
-	tab[len] = '\0';
+	tab[len + neg] = '\0';
 	while (len > 0)
 	{
-		tab[--len] = n % 10 + 48;
+		tab[--len + neg] = n % 10 + 48;
 		n /= 10;
 	}
+	tab[0] = neg == 1 ? '-' : tab[0];
 	return (tab);
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*a;
+	int		len;
+
+	len = ft_numlen(n);
+	a = (char *)malloc(sizeof(char) * (len + 1));
+	if (!a)
+		return (NULL);
+	a[len--] = '\0';
+	if (n == 0)
+		a[len] = 0 + '0';
+	while (n > 0)
+	{
+		a[len--] = n % 10 + '0';
+		n /= 10;
+	}
+	return (a);
 }
 
 int		ft_atoi(const char *s)
@@ -135,4 +157,35 @@ int	ft_isspace(int c)
 		|| c == ' ')
 		return (1);
 	return (0);
+}
+
+char	*ft_strdup(const char *str)
+{
+	size_t	len;
+	char	*copy;
+
+	len = ft_strlen(str) + 1;
+	if (!(copy = malloc((unsigned int)len)))
+		return (NULL);
+	ft_memcpy(copy, str, len);
+	return (copy);
+}
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+	char	*csrc;
+	char	*cdest;
+
+	csrc = (char *)src;
+	cdest = (char *)dest;
+	if (!csrc && !cdest && n > 0)
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		cdest[i] = csrc[i];
+		i++;
+	}
+	return (dest);
 }
