@@ -27,12 +27,6 @@ all: $(NAME)
 $(NAME): ${SRCS_OBJS}
 	@${AR} ${NAME} ${SRCS_OBJS}
 
-c:
-	@$(CC) $(FLAGS) $(SRC) main_c.c -o $(NAME)
-	@./$(NAME)
-s:
-	@$(CC) $(FLAGS) $(SRC) main_s.c -o $(NAME)
-	@./$(NAME)
 test:
 	@$(CC) $(FLAGS) $(SRC) main_test.c -o $(NAME)
 	@./$(NAME)
