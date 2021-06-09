@@ -15,7 +15,10 @@ SRC =	$(SRCS_PATH)ft_printf.c \
 		$(SRCS_PATH)alignment.c \
 		$(SRCS_PATH)outChar.c \
 		$(SRCS_PATH)outStr.c \
-		$(SRCS_PATH)outInt.c
+		$(SRCS_PATH)outInt.c \
+		$(SRCS_PATH)outPointer.c \
+		$(SRCS_PATH)outHexa.c \
+		$(SRCS_PATH)outPercent.c
 
 SRCS_OBJS	= ${SRC:.c=.o}
 

@@ -20,7 +20,29 @@ int	ft_isalpha(int c)
 	return (0);
 }
 
-int	ft_numlen(long n)
+int	ft_putnbrBase(unsigned long n, char *base)
+{
+	unsigned int	baseLength;
+	int				numLength;
+
+	numLength = 1;
+	baseLength = ft_strlen(base);
+	if (n == 0)
+	{
+		write(1, "0", 1);
+		return (numLength);
+	}
+	if (n >= baseLength)
+	{
+		numLength += ft_putnbrBase(n / baseLength, base);
+		write(1, &base[n % baseLength], 1);
+	}
+	else if (n < baseLength)
+		write(1, &base[n], 1);
+	return (numLength);
+}
+
+int	ft_numLength(long n)
 {
 	int count;
 
@@ -34,6 +56,24 @@ int	ft_numlen(long n)
 	{
 		count++;
 		n /= 10;
+	}
+	return (count);
+}
+
+int	ft_numLengthBase(unsigned long n, int base)
+{
+	int count;
+
+	count = 0;
+	if (n == 0)
+	{
+		count += 1;
+		return (count);
+	}
+	while(n > 0)
+	{
+		count++;
+		n /= base;
 	}
 	return (count);
 }
@@ -104,7 +144,7 @@ char	*ft_uitoa(unsigned int n)
 	char	*a;
 	int		len;
 
-	len = ft_numlen(n);
+	len = ft_numLength(n);
 	a = (char *)malloc(sizeof(char) * (len + 1));
 	if (!a)
 		return (NULL);

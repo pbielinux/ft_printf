@@ -3,6 +3,7 @@
 
 int main()
 {
-
-	ft_printf("\t%10u  %s  %10c  teste  %5d   %10u", 68, "teste", 'C', 45, -13);
+	printf("|| %d ||", printf("\n\t%%"));
+	fflush(stdout);
+	ft_printf("|| %d ||", ft_printf("\n\t%%"));
 }

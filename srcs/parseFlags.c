@@ -12,7 +12,7 @@ int	parseZero(t_print *tab, const char *format, int pos)
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);
-		pos += ft_numlen(i);
+		pos += ft_numLength(i);
 	}
 	tab->width = i;
 	return(pos);
@@ -52,7 +52,7 @@ int	parsePrecision(t_print *tab, const char *format, int pos)
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);
-		pos += ft_numlen(i);
+		pos += ft_numLength(i);
 	}
 	tab->precision = i;
 	if (format[pos] == '*')
@@ -70,7 +70,7 @@ int	parseWidth(t_print *tab, const char *format, int pos)
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);
-		pos += ft_numlen(i);
+		pos += ft_numLength(i);
 	}
 	tab->width = i;
 	if (format[pos] == '.')
