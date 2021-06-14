@@ -2,7 +2,7 @@
 
 void	outChar(t_print *tab)
 {
-	char a;
+	char	a;
 
 	a = va_arg(tab->args, int);
 	updateTab(tab, 1);

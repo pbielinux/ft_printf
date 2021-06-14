@@ -4,15 +4,12 @@ void	outInt(t_print *tab)
 {
 	int		arg;
 	char	*num;
-	int 	len;
+	int		len;
 	int		i;
 
 	arg = va_arg(tab->args, int);
 	if (arg == 0)
-	{
-		printZero(tab);
-		return ;
-	}
+		return (printZero(tab));
 	if (arg < 0)
 	{
 		arg *= -1;
@@ -39,10 +36,7 @@ void	outUnsignedInt(t_print *tab)
 
 	arg = va_arg(tab->args, int);
 	if (arg == 0)
-	{
-		printZero(tab);
-		return ;
-	}
+		return (printZero(tab));
 	num = ft_uitoa(arg);
 	len = ft_strlen(num);
 	updateTab(tab, len);
@@ -59,10 +53,7 @@ void	printZero(t_print *tab)
 {
 	tab->isZero = 1;
 	if ((tab->width && tab->leftPads) || tab->point)
-	{
-		printRightZero(tab);
-		return ;
-	}
+		return (printRightZero(tab));
 	updateTab(tab, 1);
 	while (!tab->leftJustify && --tab->width > 0)
 		tab->count += write(1, " ", 1);
@@ -101,6 +92,6 @@ void	printZeroPoint(t_print *tab)
 {
 	if (tab->precision < 0)
 		tab->count += write(1, "0", 1);
-	while(!tab->width && tab->precision-- > 0)
+	while (!tab->width && tab->precision-- > 0)
 		tab->count += write(1, "0", 1);
 }

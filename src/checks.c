@@ -2,7 +2,7 @@
 
 void	checkPrecision(t_print *tab)
 {
-	if(tab->precision == 0 && tab->leftPads == 1)
+	if (tab->precision == 0 && tab->leftPads == 1)
 	{
 		tab->leftPads = 0;
 		tab->percent = 1;

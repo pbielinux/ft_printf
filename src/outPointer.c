@@ -5,7 +5,7 @@ void	outPointer(t_print *tab)
 	unsigned long	arg;
 	int				len;
 
-	len = 2;    // start with the 0x
+	len = 2;
 	arg = (unsigned long)va_arg(tab->args, void *);
 	if (!arg && tab->point && tab->precision > 0)
 	{

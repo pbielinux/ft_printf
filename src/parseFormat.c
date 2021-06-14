@@ -1,10 +1,10 @@
 #include "../include/ft_printf.h"
 
-int		parseFormat(t_print *tab, const char *format, int pos)
+int	parseFormat(t_print *tab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos]) || format[pos] == '%'))
 	{
-  		if (format[pos] == '0')
+		if (format[pos] == '0')
 			pos = parseZero(tab, format, pos);
 		if (format[pos] == '*')
 			pos = parseStar(tab, format, pos);
@@ -20,13 +20,13 @@ int		parseFormat(t_print *tab, const char *format, int pos)
 	return (pos);
 }
 
-int		parseVar(t_print *tab, const char *format, int pos)
+int	parseVar(t_print *tab, const char *format, int pos)
 {
 	if (format[pos] == 'c')
 		outChar(tab);
 	else if (format[pos] == 's')
 		outStr(tab);
- 	else if (format[pos] == 'd' || format[pos] == 'i')
+	else if (format[pos] == 'd' || format[pos] == 'i')
 		outInt(tab);
 	else if (format[pos] == 'u')
 		outUnsignedInt(tab);

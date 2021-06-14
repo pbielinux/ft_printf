@@ -15,7 +15,7 @@ t_print	*initTab(t_print *tab)
 	return (tab);
 }
 
-t_print *resetTab(t_print *tab)
+t_print	*resetTab(t_print *tab)
 {
 	tab->width = 0;
 	tab->precision = 0;
@@ -54,11 +54,11 @@ void	updateTab(t_print *tab, int len)
 	}
 }
 
-int		updateTabString(t_print *tab, char *str, int len)
+int	updateTabString(t_print *tab, char *str, int len)
 {
-	if(str)
+	if (str)
 		len = ft_strlen(str);
-	if(tab->precision > 0 && len > tab->precision)
+	if (tab->precision > 0 && len > tab->precision)
 		len = tab->precision;
 	return (len);
 }
