@@ -1,4 +1,4 @@
-#ifndef	FT_PRINTF_H
+#ifndef FT_PRINTF_H
 # define	FT_PRINTF_H
 
 # include "../libft/include/libft.h"
@@ -16,18 +16,18 @@ typedef struct s_flags {
 	int		sign;
 	int		isZero;
 	int		percent;
-	int 	count;
+	int		count;
 	int		point;
 	int		type;
-} t_print;
+}	t_print;
 
 int		ft_printf(const char *format, ...);
 
 t_print	*initTab(t_print *tab);
-t_print *resetTab(t_print *tab);
+t_print	*resetTab(t_print *tab);
 void	updateTab(t_print *tab, int len);
 int		updateTabString(t_print *tab, char *str, int len);
-int		parseFormat(t_print *tab, const char *format, int );
+int		parseFormat(t_print *tab, const char *format, int pos);
 
 int		parseVar(t_print *tab, const char *format, int pos);
 int		parseZero(t_print *tab, const char *format, int pos);
