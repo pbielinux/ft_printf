@@ -2,7 +2,7 @@
 
 void	outInt(t_print *tab)
 {
-	int		arg;
+	long		arg;
 	char	*num;
 	int		len;
 	int		i;
@@ -15,7 +15,10 @@ void	outInt(t_print *tab)
 		arg *= -1;
 		tab->sign = 1;
 	}
-	num = ft_itoa(arg);
+	if (arg == -2147483648)
+		num = "2147483648";
+	else
+		num = ft_itoa(arg);
 	len = ft_strlen(num);
 	updateTab(tab, len);
 	printRightNumber(tab);
