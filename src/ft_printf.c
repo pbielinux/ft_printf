@@ -6,11 +6,11 @@
 /*   By: pbielik <pbielik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:54:33 by pbielik           #+#    #+#             */
-/*   Updated: 2021/06/07 20:18:06 by pbielik          ###   ########.fr       */
+/*   Updated: 2021/06/14 16:39:44 by pbielik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {

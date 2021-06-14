@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "../include/ft_printf.h"
 
 int		parseFormat(t_print *tab, const char *format, int pos)
 {

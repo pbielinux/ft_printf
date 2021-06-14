@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "../include/ft_printf.h"
 
 t_print	*initTab(t_print *tab)
 {

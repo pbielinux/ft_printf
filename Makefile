@@ -1,40 +1,51 @@
 NAME = libftprintf.a
 
+LIBFT = libft
+
 CC = gcc
 FLAGS += -g -Wall -Wextra -Werror
-
 AR	= ar crs
 
-SRCS_PATH = srcs/
-SRC =	$(SRCS_PATH)ft_printf.c \
-		$(SRCS_PATH)libft_utils.c \
-		$(SRCS_PATH)parseFormat.c \
-		$(SRCS_PATH)parseFlags.c \
-		$(SRCS_PATH)parseTab.c \
-		$(SRCS_PATH)checks.c \
-		$(SRCS_PATH)alignment.c \
-		$(SRCS_PATH)outChar.c \
-		$(SRCS_PATH)outStr.c \
-		$(SRCS_PATH)outInt.c \
-		$(SRCS_PATH)outPointer.c \
-		$(SRCS_PATH)outHexa.c \
-		$(SRCS_PATH)outPercent.c
+HEADER = include
 
-SRCS_OBJS	= ${SRC:.c=.o}
+SRC_PATH = src
+OBJS_PATH = objs
+
+SOURCES =	ft_printf.c \
+			parseFlags.c \
+			parseFormat.c \
+			parseTab.c \
+			checks.c \
+			alignment.c \
+			outChar.c \
+			outStr.c \
+			outInt.c \
+			outPointer.c \
+			outHexa.c \
+			outPercent.c
+
+SRC = $(addprefix $(SRC_PATH)/,$(SOURCES))
+OBJS = $(addprefix $(OBJS_PATH)/,$(SOURCES:.c=.o))
 
 all: $(NAME)
 
-$(NAME): ${SRCS_OBJS}
-	@${AR} ${NAME} ${SRCS_OBJS}
+$(NAME): $(OBJS)
+	@make -C $(LIBFT)
+	@cp libft/libft.a ./$(NAME)
+	@${AR} ${NAME} ${OBJS}
+	@ranlib $(NAME)
 
-test:
-	@$(CC) $(FLAGS) $(SRC) main_test.c -o $(NAME)
-	@./$(NAME)
+$(OBJS_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p objs
+	@$(CC) $(FLAGS) -g -I $(HEADER) -o $@ -c $<
 
 clean:
-	@rm -f ${SRCS_OBJS}
+	@rm -f $(OBJS)
+	@rm -rf $(DIR_OBJS)
+	@make clean -C $(LIBFT)
 
 fclean:	clean
 	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
 
 re: clean all

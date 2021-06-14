@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "../include/ft_printf.h"
 
 void	outHexa(t_print *tab)
 {
