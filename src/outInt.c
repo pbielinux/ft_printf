@@ -15,7 +15,7 @@ void	outInt(t_print *tab)
 	}
 	if (arg < 0)
 	{
-		arg *= -1;
+		arg = -arg;
 		tab->sign = 1;
 	}
 	num = ft_itoa(arg);

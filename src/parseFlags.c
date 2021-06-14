@@ -2,7 +2,7 @@
 
 int	parseZero(t_print *tab, const char *format, int pos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pos++;
@@ -15,7 +15,7 @@ int	parseZero(t_print *tab, const char *format, int pos)
 		pos += ft_numLength(i);
 	}
 	tab->width = i;
-	return(pos);
+	return (pos);
 }
 
 int	parseDash(t_print *tab, const char *format, int pos)
@@ -37,7 +37,7 @@ int	parseDash(t_print *tab, const char *format, int pos)
 
 int	parsePrecision(t_print *tab, const char *format, int pos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pos++;
@@ -59,12 +59,12 @@ int	parsePrecision(t_print *tab, const char *format, int pos)
 		pos = parseStar(tab, format, pos);
 	while (format[pos] == '*')
 		pos++;
-	return(pos);
+	return (pos);
 }
 
 int	parseWidth(t_print *tab, const char *format, int pos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_isdigit(format[pos]))
