@@ -37,7 +37,6 @@ $(NAME): $(OBJS)
 	@make -C $(LIBFT)
 	@cp libft/libft.a ./$(NAME)
 	@${AR} ${NAME} ${OBJS}
-	@ranlib $(NAME)
 
 $(OBJS_PATH)/%.o: $(SRC_PATH)/%.c
 	$(BUILD_PRINT)

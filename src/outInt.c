@@ -2,9 +2,8 @@
 
 void	outInt(t_print *tab)
 {
-	long		arg;
+	int		arg;
 	char	*num;
-	int		len;
 	int		i;
 
 	arg = va_arg(tab->args, int);
@@ -16,11 +15,10 @@ void	outInt(t_print *tab)
 		tab->sign = 1;
 	}
 	if (arg == -2147483648)
-		num = "2147483648";
+		num = ft_strdup("2147483648");
 	else
 		num = ft_itoa(arg);
-	len = ft_strlen(num);
-	updateTab(tab, len);
+	updateTab(tab, ft_strlen(num));
 	printRightNumber(tab);
 	i = 0;
 	while (num[i])
